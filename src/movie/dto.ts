@@ -16,7 +16,7 @@ export class MovieDto implements Movie {
   @IsNotEmpty()
   year: string;
 
-  @ApiProperty({ type: String })
+  @ApiProperty({ type: String, format: 'binary' })
   @IsOptional()
   imageUrl?: string;
 }

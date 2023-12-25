@@ -6,6 +6,7 @@ import { MovieModule } from './movie/movie.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ENV } from './env';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { CloudinaryInterceptor } from './cloudinary/cloudinary.interceptor';
 
 console.log(ENV);
 
