@@ -6,8 +6,12 @@ import { MongoRef } from 'src/types';
 import { User } from 'src/user/user.schema';
 
 export class MovieDto implements Movie {
+  @ApiProperty({ type: String })
+  @IsNotEmpty()
   owner: MongoRef<User>;
+
   _id: Types.ObjectId;
+
   @ApiProperty({ type: String })
   @IsNotEmpty()
   title: string;

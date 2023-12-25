@@ -31,4 +31,8 @@ export class UserService {
   async find(dto: Partial<SignInDto>) {
     return await this.userModel.find(dto);
   }
+
+  async exists(dto: Partial<Omit<SignInDto, '_id'> & { _id: string }>) {
+    return await this.userModel.exists(dto);
+  }
 }

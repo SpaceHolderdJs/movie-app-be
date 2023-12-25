@@ -5,6 +5,7 @@ import { Movie, MovieSchema } from './movie.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from 'src/user/user.module';
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { PaginateService } from 'src/paginate/paginate.service';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
     UserModule,
     CloudinaryModule,
   ],
-  providers: [MovieService],
+  providers: [MovieService, PaginateService],
   controllers: [MovieController],
   exports: [MovieService],
 })

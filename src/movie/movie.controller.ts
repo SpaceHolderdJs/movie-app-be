@@ -5,6 +5,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { MovieService } from './movie.service';
@@ -13,6 +14,8 @@ import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryInterceptor } from 'src/cloudinary/cloudinary.interceptor';
 import { multerOptions } from 'src/multer.config';
+import { MongoObjectId } from 'src/types';
+import { PaginateQueryDto } from 'src/paginate/dto';
 
 @ApiTags('movie')
 @Controller('movie')
@@ -29,9 +32,13 @@ export class MovieController {
     return await this.movieService.create(body);
   }
 
-  @Get('/')
-  async getForUser(@Param('email') email: string) {
-    return await this.movieService.getForUser(email);
+  @Get('/for-user/:id')
+  async getForUser(
+    @Param('id') id: string,
+    @Query('limit') limit: number,
+    @Query('skip') skip: number,
+  ) {
+    return await this.movieService.getForUser(id, { limit, skip });
   }
 
   @Patch(':id')

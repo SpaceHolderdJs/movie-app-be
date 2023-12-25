@@ -6,7 +6,7 @@ import { MovieModule } from './movie/movie.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ENV } from './env';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
-import { CloudinaryInterceptor } from './cloudinary/cloudinary.interceptor';
+import { PaginateService } from './paginate/paginate.service';
 
 console.log(ENV);
 
@@ -21,6 +21,6 @@ console.log(ENV);
     CloudinaryModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PaginateService],
 })
 export class AppModule {}
