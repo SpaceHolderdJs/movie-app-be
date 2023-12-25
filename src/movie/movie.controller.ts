@@ -30,8 +30,8 @@ export class MovieController {
   }
 
   @Get('/')
-  async getForUser(@Body() dto: MovieDto & { email: string }) {
-    return await this.movieService.getForUser(dto);
+  async getForUser(@Param('email') email: string) {
+    return await this.movieService.getForUser(email);
   }
 
   @Patch(':id')

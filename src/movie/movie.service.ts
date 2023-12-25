@@ -20,11 +20,10 @@ export class MovieService {
     return movie;
   }
 
-  async getForUser(dto: Partial<MovieDto> & { email: string }) {
-    const { email } = dto;
+  async getForUser(email: string) {
     const [owner] = await this.userService.find({ email });
 
-    const movies = await this.movieModel.find({ ...dto, owner: owner._id });
+    const movies = await this.movieModel.find({ owner: owner._id });
     return movies;
   }
 
