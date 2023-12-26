@@ -11,7 +11,7 @@ export class PaginateService {
     queryOptions?: QueryOptions<T>,
   ): Promise<PaginateResponseDto<T[]>> {
     const { limit, skip } = paginationParams;
-    const count = await schema.countDocuments();
+    const count = await schema.countDocuments(findParams || {});
 
     const data = await schema
       .find(findParams || {}, {}, queryOptions || {})
