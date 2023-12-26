@@ -12,14 +12,12 @@ export class PaginateService {
   ): Promise<PaginateResponseDto<T[]>> {
     const { limit, skip } = paginationParams;
     const count = await schema.countDocuments();
-    const page_total = Math.floor((count - 1) / limit) + 1;
-    const current_page = Math.floor(count - 1 / limit - skip);
 
     const data = await schema
       .find(findParams || {}, {}, queryOptions || {})
       .limit(limit)
       .skip(skip);
 
-    return { page_total, data, current_page };
+    return { data, total: count };
   }
 }
