@@ -25,7 +25,9 @@ export class UserService {
     const user = new this.userModel(dto);
     await user.save();
 
-    return { email: user.email, authorized: true };
+    delete user.password;
+
+    return user;
   }
 
   async find(dto: Partial<SignInDto>) {
